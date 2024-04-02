@@ -1,3 +1,5 @@
+# Generating an ATM code for simple amount transfer and to check balance
+
 print(" Welcome To BANK OF BARODA")
 i=0
 #taking aone username and password to login the app
@@ -46,14 +48,18 @@ ATM
 while True:
     print(menu)
     option = int(input("Enter an option: "))
-
+    # If the option is one then it means the user wants to check balance in his account
     if option == 1:
+        # Asking the user's account number
         account_number = input("Enter your META MASK account number: ")
+        # Checking the account number entered by the user whether it's there in that particular bank account or not, Incase if the account number is not there in bank dataset then it will return "Invalid Account Number"
+        
         if account_number in accounts:
-            account=accounts[account_number]
-            pin = account["pin"]
+            account=accounts[account_number] #getting account number into account for accessing the elements of that account
+            pin = account["pin"]         #accessing account pin and keeping it in "pin" variable for further use
             input_pin=int(input("Enter your pin:"))
             if input_pin == pin:
+                #if the pin matches then it will display the balance to the user otherwise it will return "Invalid pin"
                #account = accounts[account_number]
                 print("Account Holder's Name:", account["name"])
                 print("Balance:", account["balance"])
@@ -62,13 +68,19 @@ while True:
         else:
             print("Invalid account number")
     elif option == 2:
+        # If option is two which means the user wants to transfer funds to some other account and ask user account number and receiver account number
         from_account_number = input("Enter your account number: ")
         to_account_number = input("Enter the recipient's META MASKaccount number: ")
+        # In this we are working on the same database so it checks Whether the account numbers are there or not if that two accounts are present then it will ask amount to transfer otherwise it will return "Invalid Account Numbers" 
+        
         if from_account_number in accounts and to_account_number in accounts:
             from_account = accounts[from_account_number]
             to_account = accounts[to_account_number]
             account = accounts[from_account_number]
             pin = account["pin"]
+
+            # Asking pin after entering the amount if pin matches then it checks the entered amount is lessthan of amount which is there in user account, Incase the balance is low then it will return "Low Balance" otherwise funds were transfered
+            
             transfer_amount = float(input("Enter the Etherteum amount to transfer: "))
             input_pin = int(input("Enter your pin:"))
             if input_pin == pin:
@@ -84,5 +96,7 @@ while True:
         else:
             print("Invalid account number")
     elif option == 3:
+
+        # If option is three that means the user wants to exit. so the loop gets terminated and the code ends
         print("--Thanks for using the BANK OF BARODA--")
         break
