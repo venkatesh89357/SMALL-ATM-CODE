@@ -1,6 +1,6 @@
 # Generating an ATM code for simple amount transfer and to check balance
 
-print(" Welcome To BANK OF META MASK")
+print(" Welcome To BANK OF BARODA")
 i=0
 #taking aone username and password to login the app
 username = "venkatesh"
